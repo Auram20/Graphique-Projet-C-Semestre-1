@@ -3,4 +3,4 @@
 #include <MLV/MLV_all.h>
 
 
-void dessinerplateau();
+void dessinerplateau(Monde monde);

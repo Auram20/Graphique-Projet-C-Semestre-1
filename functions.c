@@ -182,7 +182,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
   Unite **uniteSelect = creerSelection(uliste);
 
   if(nUnite) {
-    affichePlateau(*monde);
+      affichePlateau(*monde);
     printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
     do {
       selection = parcourirUniteSelect(uniteSelect, nUnite);
@@ -393,9 +393,9 @@ void placementparjoueur(Monde *monde, char couleur){
     UListe *uliste=getUListe(couleur,monde);
     printf("Où voulez-vous positionner vos deux serfs ? \n ");
     placerunite(monde,uliste,SERF);
-    /*placerunite(monde,uliste,SERF);*/
+    placerunite(monde,uliste,SERF);
     printf(" Placez votre guerrier. \n");
-    /*placerunite(monde,uliste,GUERRIER);*/
+    placerunite(monde,uliste,GUERRIER);
 }
 
 void placementinitial(Monde *monde){
@@ -426,10 +426,11 @@ int arreterpartie(){
 
 
 void gererPartie(void){
-    dessinerplateau();
+   
     Monde mondejeu;
     initialiserMonde(&mondejeu);
     affichePlateau(mondejeu);
+    dessinerplateau(mondejeu);
     /*3PIONS 1 GUERRIER 2 SERFS */
     placementinitial(&mondejeu);
     printf("Début de la partie \n ");
@@ -443,7 +444,11 @@ void gererPartie(void){
     if (nombreUnite(*(mondejeu.bleu)) <= 0)
     {
         printf("Fin de la partie, le joueur ROUGE a gagné !");
-    } else {
+         if (nombreUnite(*(mondejeu.rouge)) <= 0)
+    {
         printf("Fin de la partie, le joueur BLEU a gagné !");
+    } else {
+        printf("Fin de la partie, pas de gagnants!");
     }
+}
 }
