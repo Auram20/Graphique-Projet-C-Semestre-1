@@ -34,4 +34,5 @@ typedef struct Monde{
   UListe *rouge, *bleu; /*Listes des deux joueurs*/
 } Monde;
 
+
 #endif /* STRUCTURES_H_INCLUDED */

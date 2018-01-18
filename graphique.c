@@ -47,11 +47,10 @@ for (x = 0; x < LONG; x++){
 					color = MLV_rgba(63,127,191,255);
 				}
 
-				/* Test du type d'unité */
 				if (monde.plateau[x][y]->genre == SERF){
-					MLV_draw_ellipse(y*40 + 15, x*40 + 15, 7, 7, color);
+					MLV_draw_ellipse(x*40 + 15, y*40 + 15, 7, 7, color);
 				} else {
-					MLV_draw_filled_ellipse(y*40 + 15, x*40 + 15, 7, 7, color);
+					MLV_draw_filled_ellipse(x*40 + 15, y*40 + 15, 7, 7, color);
 				}
         }}
 }
@@ -70,4 +69,3 @@ for (x = 0; x < LONG; x++){
 }
 
                       
-
