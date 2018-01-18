@@ -6,10 +6,16 @@
 #include "functions.h"
 #include "graphique.h"
 
+void creerfenetre(){
+    
+	MLV_create_window( "Jeu de Stratégie", "Jeu", 721, 481 );
+    MLV_draw_filled_rectangle(0, 0, 721, 481, MLV_rgba(206,206,206,255));
+                    }
+
+
 
 void dessinerplateau(Monde monde){
 
-	MLV_create_window( "Jeu de Stratégie", "Jeu", 721, 481 );
     int x;
     int y;
     for (x=1;x<=722;x=x+40){

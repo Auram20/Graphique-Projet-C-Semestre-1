@@ -4,3 +4,4 @@
 
 
 void dessinerplateau(Monde monde);
+void creerfenetre();

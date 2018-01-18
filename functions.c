@@ -418,9 +418,10 @@ int arreterpartie(){
     printf("Voulez vous quitter la partie ? (o/n)\n");
     scanf(" %c",&reponse);
     if('o'==reponse){
-
+        
         printf("Merci d'avoir joué \n");
         return 1;
+        
     }
     return 0;
 }
@@ -430,7 +431,8 @@ int arreterpartie(){
 void gererPartie(void){
    
     Monde mondejeu;
-    initialiserMonde(&mondejeu);
+    initialiserMonde(&mondejeu);  
+    creerfenetre();
     affichePlateau(mondejeu);
     dessinerplateau(mondejeu);
     /*3PIONS 1 GUERRIER 2 SERFS */
