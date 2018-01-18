@@ -6,7 +6,6 @@
 
 int initialiserMonde(Monde *monde);
 void dessinerplateau(Monde monde);
-void creerfenetre();
 void initialiserPlateau(Unite *plateau[LONG][LARG]);
 Unite* creerUnite(char genre, UListe *uliste);
 int placerAuMonde(Unite *unite, Monde *monde, size_t posX, size_t posY);
@@ -21,7 +20,7 @@ UListe *getUListe(char couleur, Monde *monde);
 void deplacerUnite(Unite *unite, Monde *monde, int destX, int destY);
 void gererTourJoueur(char couleur, Monde *monde);
 int attaquer(Unite *unite, Monde *monde, int destX, int destY);
-int deplacerouattaquer(Unite *unite, Monde *monde, int destX, int destY);
+int deplacerOuAttaquer(Unite *unite, Monde *monde, int destX, int destY);
 void gererTourJoueur(char couleur, Monde *monde);
 Unite **creerSelection(UListe uliste);
 int nombreUnite(UListe uliste);
@@ -34,8 +33,8 @@ void actionUnite(Unite *unite, Monde *monde);
 void viderMonde(Monde *monde);
 void viderUListe(UListe *uliste);
 void gererTour(Monde *monde);
-void placerunite(Monde *monde, UListe *uliste, char genre);
-void placementparjoueur(Monde *monde, char couleur);
-void placementinitial(Monde *monde);
+void placerUnite(Monde *monde, UListe *uliste, char genre);
+void placementParJoueur(Monde *monde, char couleur);
+void placementInitial(Monde *monde);
 void gererPartie(void);
 #endif /* FUNCTIONS_H_INCLUDED */
