@@ -3,6 +3,7 @@
 #include <string.h>
 #include "structures.h"
 #include "functions.h"
+#include "graphique.h"
 
 
 int initialiserMonde(Monde *monde){
@@ -437,7 +438,7 @@ void gererPartie(void){
     Monde mondejeu;
     int arret = 0;
     initialiserMonde(&mondejeu);
-    creerfenetre();
+    creerFenetre();
     affichePlateau(mondejeu);
     dessinerplateau(mondejeu);
     /*3PIONS 1 GUERRIER 2 SERFS */
