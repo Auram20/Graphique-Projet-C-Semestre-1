@@ -183,6 +183,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
 
   if(nUnite) {
       affichePlateau(*monde);
+    dessinerplateau(*monde);
     printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
     do {
       selection = parcourirUniteSelect(uniteSelect, nUnite);
@@ -190,6 +191,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
         actionUnite(uniteSelect[selection], monde);
         nUnite = enleverSelect(uniteSelect, selection, nUnite);
         affichePlateau(*monde);
+        dessinerplateau(*monde);
         printf("Voulez-vous arreter votre tour ? (o/n)\n");
         scanf(" %c", &cmd);
       } else {
@@ -435,6 +437,7 @@ void gererPartie(void){
     placementinitial(&mondejeu);
     printf("Début de la partie \n ");
     affichePlateau(mondejeu);
+    dessinerplateau(mondejeu);
     while( !arreterpartie(&mondejeu) && (nombreUnite(*(mondejeu.rouge)) > 0 && nombreUnite(*(mondejeu.bleu)) > 0)) {
     gererTour(&mondejeu);
     }

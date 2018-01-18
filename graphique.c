@@ -57,9 +57,10 @@ for (x = 0; x < LONG; x++){
     
         MLV_actualise_window();                        
 
-    	MLV_wait_seconds(30);
+    	/*MLV_wait_seconds(30);
 
 	   MLV_free_window();
+*/
 }
 
                       
