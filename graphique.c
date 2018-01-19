@@ -8,8 +8,8 @@
 
 void creerFenetre(){
 
-	MLV_create_window( "Jeu de Stratégie", "Jeu", 721, 481 );
-    MLV_draw_filled_rectangle(0, 0, 721, 481, MLV_rgba(206,206,206,255));
+	MLV_create_window( "Jeu de Stratégie", "Jeu", 721, 721 );
+    MLV_draw_filled_rectangle(0, 0, 721, 721, MLV_rgba(206,206,206,255));
                     }
 
 
@@ -26,6 +26,8 @@ void dessinerplateau(Monde monde){
 
       for (x=0;x<=721;x=x+40){
              MLV_draw_line(x,0,x,480,MLV_COLOR_BLACK);
+           }
+ for (x=0;x<=481;x=x+40){
              MLV_draw_line(0,x,720,x,MLV_COLOR_BLACK);
            }
 
