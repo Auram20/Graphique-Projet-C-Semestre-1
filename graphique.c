@@ -70,10 +70,17 @@ for (x = 0; x < LONG; x++){
 
 
 void quiCommence(){
+   
     MLV_draw_text(300,
 		700,"Qui commence ?",MLV_rgba(191,63,63,255));
     MLV_draw_filled_rectangle(50, 591, 200, 100, MLV_rgba(191,63,63,255));
      MLV_draw_filled_rectangle(450, 591, 200, 100, MLV_rgba(63,127,191,255));
     
     
+}
+
+void reinitialiseInterface(){
+     MLV_draw_filled_rectangle(0, 480, 720, 340, MLV_rgba(206,206,206,255));
+      MLV_draw_text(300,
+		700,"AZY POSITIONNE TA RACE",MLV_rgba(191,63,63,255));
 }

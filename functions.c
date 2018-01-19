@@ -395,6 +395,7 @@ void placerUnite(Monde *monde, UListe *uliste, char genre){
 
 void placementParJoueur(Monde *monde, char couleur){
     UListe *uliste=getUListe(couleur,monde);
+
     printf("Où voulez-vous positionner vos deux serfs ? \n ");
     placerUnite(monde,uliste,SERF);
     placerUnite(monde,uliste,SERF);
@@ -408,19 +409,25 @@ void placementInitial(Monde *monde){
     int posX, posY;
   	MLV_wait_mouse(&posX, &posY);
     if(posX<250 && posX>50 && posY<691 && posY>591){
+        
+    reinitialiseInterface();
         couleur='R';
     }
      if(posX<650 && posX>450 && posY<691 && posY>591){
+         
+    reinitialiseInterface();
         couleur='B';
     }
     while(couleur != ROUGE && couleur != BLEU) {
       printf("Veuillez appuyer sur une couleur!\n");
     MLV_wait_mouse(&posX, &posY);
+        
     }
     placementParJoueur(monde,couleur);
     printf("À l'autre joueur de placer ses unités :) \n");
     if('B' == couleur){
     placementParJoueur(monde,ROUGE);
+        
   } else {
     placementParJoueur(monde,BLEU);
   }

@@ -36,4 +36,5 @@ void placerUnite(Monde *monde, UListe *uliste, char genre);
 void placementParJoueur(Monde *monde, char couleur);
 void placementInitial(Monde *monde);
 void gererPartie(void);
+void reinitialiseInterface();
 #endif /* FUNCTIONS_H_INCLUDED */
