@@ -405,10 +405,17 @@ void placementParJoueur(Monde *monde, char couleur){
 void placementInitial(Monde *monde){
     char couleur;
     printf("Qui commence ? (R/B) \n");
-    scanf(" %c",&couleur);
+    int posX, posY;
+  	MLV_wait_mouse(&posX, &posY);
+    if(posX<250 && posX>50 && posY<691 && posY>591){
+        couleur='R';
+    }
+     if(posX<650 && posX>450 && posY<691 && posY>591){
+        couleur='B';
+    }
     while(couleur != ROUGE && couleur != BLEU) {
-      printf("Veuillez utiliser les commandes indiquees !\n");
-      scanf(" %c",&couleur);
+      printf("Veuillez appuyer sur une couleur!\n");
+    MLV_wait_mouse(&posX, &posY);
     }
     placementParJoueur(monde,couleur);
     printf("À l'autre joueur de placer ses unités :) \n");
@@ -440,6 +447,7 @@ void gererPartie(void){
     int arret = 0;
     initialiserMonde(&mondejeu);
     creerFenetre();
+    quiCommence(); 
     affichePlateau(mondejeu);
     dessinerplateau(mondejeu);
     /*3PIONS 1 GUERRIER 2 SERFS */

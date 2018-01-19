@@ -5,3 +5,4 @@
 
 void dessinerplateau(Monde monde);
 void creerFenetre();
+void quiCommence();
