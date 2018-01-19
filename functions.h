@@ -3,7 +3,6 @@
 
 #include "structures.h"
 #include <stdio.h>
-
 int initialiserMonde(Monde *monde);
 void dessinerplateau(Monde monde);
 void initialiserPlateau(Unite *plateau[LONG][LARG]);

@@ -384,10 +384,11 @@ void gererTour(Monde *monde) {
 
 void placerUnite(Monde *monde, UListe *uliste, char genre){
     int posX, posY;
-    scanf("%d,%d", &posX, &posY);
-    while (!placerAuMonde(creerUnite(genre, uliste), monde, posX, posY)){
+  	MLV_wait_mouse(&posX, &posY);
+    printf("%d,%d \n",posX/40,posY/40);
+    while (!placerAuMonde(creerUnite(genre, uliste), monde, posX/40, posY/40)){
       printf("Position indisponible \n");
-      scanf("%d,%d", &posX, &posY);
+  	MLV_wait_mouse(&posX, &posY);
     }
 
 }
