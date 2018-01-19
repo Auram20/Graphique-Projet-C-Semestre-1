@@ -75,12 +75,27 @@ void quiCommence(){
 		700,"Qui commence ?",MLV_rgba(191,63,63,255));
     MLV_draw_filled_rectangle(50, 591, 200, 100, MLV_rgba(191,63,63,255));
      MLV_draw_filled_rectangle(450, 591, 200, 100, MLV_rgba(63,127,191,255));
-    
+    MLV_actualise_window();
     
 }
 
 void reinitialiseInterface(){
-     MLV_draw_filled_rectangle(0, 480, 720, 340, MLV_rgba(206,206,206,255));
-      MLV_draw_text(300,
-		700,"AZY POSITIONNE TA RACE",MLV_rgba(191,63,63,255));
+     MLV_draw_filled_rectangle(0, 482, 720, 340, MLV_rgba(206,206,206,255));
+ MLV_actualise_window();
+}
+
+
+void Pos(char couleur){
+    if (couleur=='R'){
+        reinitialiseInterface();
+             MLV_draw_text(230,
+		700,"ROUGE : À TON TOUR DE POSITIONNER",MLV_rgba(191,63,63,255));
+    }
+    
+     if (couleur=='B'){
+         reinitialiseInterface();
+             MLV_draw_text(230,
+		700,"BLEU : À TON TOUR DE POSITIONNER",MLV_rgba(63,127,191,255));
+    }
+    MLV_actualise_window();
 }

@@ -6,3 +6,4 @@
 void dessinerplateau(Monde monde);
 void creerFenetre();
 void quiCommence();
+void Pos(char couleur); 

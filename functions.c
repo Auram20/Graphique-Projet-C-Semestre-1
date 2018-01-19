@@ -138,7 +138,7 @@ void deplacerUnite(Unite *unite, Monde *monde, int destX, int destY){
                     monde->plateau[destY][destX] = unite;
 
         }
-
+dessinerplateau(*monde);
 }
 
 void enleverUnite(Unite *unite, Monde *monde) {
@@ -315,12 +315,14 @@ int attaquer(Unite *unite, Monde *monde, int destX, int destY){
                 if (unite->genre==GUERRIER || unite->genre==monde->plateau[destY][destX]->genre){
                     enleverUnite(monde->plateau[destY][destX],monde);
                     deplacerUnite(unite,monde,destX,destY);
+                    dessinerplateau(*monde);
                     return 1;
                         }
                     enleverUnite(unite,monde);
+        dessinerplateau(*monde);
                     return 0;
     }
-
+dessinerplateau(*monde);
    return 0;
 
 }
@@ -390,6 +392,8 @@ void placerUnite(Monde *monde, UListe *uliste, char genre){
       printf("Position indisponible \n");
   	MLV_wait_mouse(&posX, &posY);
     }
+    
+    dessinerplateau(*monde);
 
 }
 
@@ -412,23 +416,27 @@ void placementInitial(Monde *monde){
         
     reinitialiseInterface();
         couleur='R';
+        Pos(couleur);
     }
      if(posX<650 && posX>450 && posY<691 && posY>591){
          
     reinitialiseInterface();
         couleur='B';
+         Pos(couleur);
     }
     while(couleur != ROUGE && couleur != BLEU) {
       printf("Veuillez appuyer sur une couleur!\n");
-    MLV_wait_mouse(&posX, &posY);
+        MLV_wait_mouse(&posX, &posY);
         
     }
     placementParJoueur(monde,couleur);
     printf("À l'autre joueur de placer ses unités :) \n");
     if('B' == couleur){
+        Pos('R');
     placementParJoueur(monde,ROUGE);
-        
+          
   } else {
+        Pos('B');
     placementParJoueur(monde,BLEU);
   }
 }
