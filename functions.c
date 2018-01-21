@@ -400,28 +400,40 @@ void placementParJoueur(Monde *monde, char couleur){
 }
 
 void placementInitial(Monde *monde){
-    char couleur;
+    char couleur='N';
     printf("Qui commence ? (R/B) \n");
     int posX, posY;
   	MLV_wait_mouse(&posX, &posY);
-    if(posX<250 && posX>50 && posY<691 && posY>591){
-        
-    reinitialiseInterface();
+      if(posX<250 && posX>50 && posY<691 && posY>591){   
+        reinitialiseInterface();
         couleur='R';
-        Pos(couleur);
+    
     }
-     if(posX<650 && posX>450 && posY<691 && posY>591){
-         
-    reinitialiseInterface();
+     if(posX<650 && posX>450 && posY<691 && posY>591){   
+         reinitialiseInterface();
         couleur='B';
-         Pos(couleur);
+          
+   
     }
     while(couleur != ROUGE && couleur != BLEU) {
-      printf("Veuillez appuyer sur une couleur!\n");
-        MLV_wait_mouse(&posX, &posY);
-        
+           printf("Veuillez appuyer sur une couleur!\n");
+        MLV_wait_mouse(&posX, &posY);  
+    if(posX<250 && posX>50 && posY<691 && posY>591){   
+        reinitialiseInterface();
+        couleur='R';
+    
     }
-    placementParJoueur(monde,couleur);
+     if(posX<650 && posX>450 && posY<691 && posY>591){   
+         reinitialiseInterface();
+        couleur='B';
+          
+   
+    }
+    
+    }
+     Pos(couleur);
+     placementParJoueur(monde,couleur);
+   
     printf("À l'autre joueur de placer ses unités :) \n");
     if('B' == couleur){
         Pos('R');
