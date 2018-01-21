@@ -283,11 +283,14 @@ void actionUnite(Unite *unite, Monde *monde) {
   int mouseX, mouseY;
   MLV_wait_mouse(&mouseX, &mouseY);    
 
-  if(mouseX>100 && mouseX<200 && mouseY<641 && mouseY>591){ deplacer();
+  if(mouseX>100 && mouseX<200 && mouseY<641 && mouseY>591){ char acte='D';
+      action(acte);
     int posX, posY;
-   MLV_wait_mouse(&posX, &posY);
+    MLV_wait_mouse(&posX, &posY);
     deplacerUnite(unite, monde, posX/40, posY/40);
   } else if(mouseX>300 && mouseX<400 && mouseY<641 && mouseY>591) {
+      char acte='A';
+      action(acte);
      int attX,attY;
    MLV_wait_mouse(&attX, &attY);
     attaquer(unite, monde, attX/40, attY/40);
@@ -454,6 +457,7 @@ void gererPartie(void){
 
     Monde mondejeu;
     int arret = 0;
+    char gagnant;
     initialiserMonde(&mondejeu);
     creerFenetre();
     quiCommence(); 
@@ -464,22 +468,42 @@ void gererPartie(void){
     printf("Début de la partie \n ");
     affichePlateau(mondejeu);
     dessinerplateau(mondejeu);
-    while( !arret && (nombreUnite(*(mondejeu.rouge)) > 0 && nombreUnite(*(mondejeu.bleu)) > 0)) {
+    
+    
+    while( arret==0 && (nombreUnite(*(mondejeu.rouge)) > 0 && nombreUnite(*(mondejeu.bleu)) > 0)) {
     gererTour(&mondejeu);
     arret = arreterPartie(mondejeu);
     }
         /*viderMonde(&mondejeu);*/
 
 
-    if(!arret) {
-      if (nombreUnite(*(mondejeu.bleu)) <= 0)
-      {
+     if (nombreUnite(*(mondejeu.bleu)) <= 0)
+      {   	gagnant='R';
+            Fin(gagnant);
+         MLV_wait_seconds(5);
+
+	   MLV_free_window();
           printf("Fin de la partie, le joueur ROUGE a gagne !");
-      } else {
+      } 
+    
+      if (nombreUnite(*(mondejeu.bleu)) <= 0) 
+    {     gagnant='B';
+            Fin(gagnant);
+          
+          MLV_wait_seconds(5);
+
+	   MLV_free_window();
           printf("Fin de la partie, le joueur BLEU a gagne !");
       }
-    }
-    else{
+    
+         gagnant='N';
+         Fin(gagnant);
+         MLV_wait_seconds(5);
+
+	   MLV_free_window();
         printf("Fin de la partie, pas de gagnants.");
-      }
+        
+      
+    
+    
 }

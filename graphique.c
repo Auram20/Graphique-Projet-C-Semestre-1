@@ -99,8 +99,6 @@ void reinitialiseInterface(){
      MLV_draw_filled_rectangle(0, 482, 720, 340, MLV_rgba(206,206,206,255));
  MLV_actualise_window();
 }
-
-
 void Pos(char couleur){
     if (couleur=='R'){
         reinitialiseInterface();
@@ -115,12 +113,10 @@ void Pos(char couleur){
     }
     MLV_actualise_window();
 }
-
-
 void troisActions(){
    reinitialiseInterface();
     MLV_draw_text(200,
-		500,"Que vous voulez vous faire avec ce pion ?",MLV_rgba(191,63,63,255));
+		500,"QUE VOULEZ-VOUS FAIRE AVEC CE PION",MLV_rgba(191,63,63,255));
     MLV_draw_text_box(
 		100,591,100,50,
 		"Déplacer",
@@ -195,11 +191,16 @@ void hoverSelection(Unite unite){
     
      }
 
-void deplacer(){
+void action(char acte){
    reinitialiseInterface();
+    if(acte=='D'){
     MLV_draw_text(200,
-		500,"Clique sur la case où tu veux déplacer ton unité",MLV_rgba(191,63,63,255));
-    
+		500,"CLIQUE SUR LA CASE OÙ TU VEUX DÉPLACER TON UNITÉ",MLV_rgba(191,63,63,255));
+    }
+      if(acte=='A'){
+    MLV_draw_text(200,
+		500,"CLIQUE SUR L'UNITÉ QUE TU VEUX ATTAQUER",MLV_rgba(191,63,63,255));
+    }
     
     MLV_actualise_window();
     
@@ -207,8 +208,8 @@ void deplacer(){
 
 void arreterTour(){
    reinitialiseInterface();
-    MLV_draw_text(200,
-		500,"Voulez vous arreter votre tour ? ",MLV_rgba(191,63,63,255));
+    MLV_draw_text(240,
+		500,"VEUX-TU ARRETER TON TOUR ? ",MLV_rgba(191,63,63,255));
     
      MLV_draw_text_box(
 		215,591,100,50,
@@ -234,7 +235,7 @@ void arreterTour(){
 void arreterPartieGr(){
    reinitialiseInterface();
     MLV_draw_text(200,
-		500,"Voulez vous arreter la partie ? ",MLV_rgba(191,63,63,255));
+		500,"VOULEZ-VOUS ARRETER LA PARTIE ? ",MLV_rgba(191,63,63,255));
     
      MLV_draw_text_box(
 		215,591,100,50,
@@ -253,6 +254,29 @@ void arreterPartieGr(){
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
     
+    MLV_actualise_window();
+    
+}
+
+
+void Fin(char ecranfin){
+      MLV_draw_filled_rectangle(0, 0, 721, 721, MLV_rgba(206,206,206,255));
+    
+     if(ecranfin=='B'){
+             MLV_draw_text(240,
+		360.5,"BLEU A GAGNÉ ",MLV_rgba(191,63,63,255));
+         
+         
+     }
+    if(ecranfin=='R'){
+          MLV_draw_text(240,
+		360.5,"ROUGE A GAGNÉ ",MLV_rgba(191,63,63,255));
+         
+     }
+      if(ecranfin=='N'){
+        MLV_draw_text(240,
+		360.5,"FIN DE LA PARTIE PAS DE GAGNANT",MLV_rgba(191,63,63,255));
+      }
     MLV_actualise_window();
     
 }

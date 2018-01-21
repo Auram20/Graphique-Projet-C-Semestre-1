@@ -9,6 +9,7 @@ void quiCommence();
 void Pos(char couleur); 
 void troisActions();
 void hoverSelection(Unite unite);
-void deplacer();
+void action(char acte);
 void arreterTour();
 void arreterPartieGr();
+void Fin(char ecranfin);
