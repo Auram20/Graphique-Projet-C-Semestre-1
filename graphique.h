@@ -8,3 +8,4 @@ void creerFenetre();
 void quiCommence();
 void Pos(char couleur); 
 void troisActions();
+void hoverSelection(Unite unite);

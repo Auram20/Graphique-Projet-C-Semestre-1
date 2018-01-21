@@ -181,7 +181,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
   UListe uliste = *getUListe(couleur, monde);
   int nUnite = nombreUnite(uliste);
   Unite **uniteSelect = creerSelection(uliste);
-
+   
   if(nUnite) {
       affichePlateau(*monde);
     dessinerplateau(*monde);
@@ -231,22 +231,26 @@ int nombreUnite(UListe uliste) {
 }
 
 int parcourirUniteSelect(Unite **tab, int length) {
-  char cmd = 'n';
   int i = -1;
+  int mouseX=416, mouseY=592; /* Pour permettre l'entrée dans la boucle While*/
+   
   printf("--------LISTE UNITES--------\n");
   if(length <= 0) {
     printf("Plus aucune unite selectionnable\n");
     printf("----------------------------\n");
   } else {
-    while(cmd != 'o') {
+    while(mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591) {
       if(i + 1 < length) {
         ++i;
+          
+      hoverSelection(*tab[i]); 
       } else {
         i = 0;
       }
-      afficherUnite(*tab[i]);
+        
+      afficherUnite(*tab[i]);    
       printf("Voulez-vous le selectionner ? (o/n)\n");
-      scanf(" %c", &cmd);
+      MLV_wait_mouse(&mouseX, &mouseY);  
       printf("----------------------------\n");
     }
   }

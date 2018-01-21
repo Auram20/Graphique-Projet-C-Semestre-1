@@ -88,8 +88,7 @@ for (x = 0; x < LONG; x++){
 
 void quiCommence(){
    reinitialiseInterface();
-    MLV_draw_text(300,
-		700,"Qui commence ?",MLV_rgba(191,63,63,255));
+   MLV_draw_text(290,600,"QUI COMMENCE ? ",MLV_rgba(191,63,63,255));
     MLV_draw_filled_rectangle(50, 591, 200, 100, MLV_rgba(191,63,63,255));
      MLV_draw_filled_rectangle(450, 591, 200, 100, MLV_rgba(63,127,191,255));
     MLV_actualise_window();
@@ -105,14 +104,14 @@ void reinitialiseInterface(){
 void Pos(char couleur){
     if (couleur=='R'){
         reinitialiseInterface();
-             MLV_draw_text(230,
-		700,"ROUGE : À TON TOUR DE POSITIONNER",MLV_rgba(191,63,63,255));
+             MLV_draw_text(180,
+		500,"ROUGE : POSITIONNES TES 2 SERFS PUIS TON GUERRIER",MLV_rgba(191,63,63,255));
     }
     
      if (couleur=='B'){
          reinitialiseInterface();
-             MLV_draw_text(230,
-		700,"BLEU : À TON TOUR DE POSITIONNER",MLV_rgba(63,127,191,255));
+             MLV_draw_text(180,
+		500,"BLEU : POSITIONNES TES 2 SERFS PUIS TON GUERRIER",MLV_rgba(63,127,191,255));
     }
     MLV_actualise_window();
 }
@@ -121,7 +120,7 @@ void Pos(char couleur){
 void troisActions(){
    reinitialiseInterface();
     MLV_draw_text(200,
-		700,"Que vous voulez vous faire avec ce pion ?",MLV_rgba(191,63,63,255));
+		500,"Que vous voulez vous faire avec ce pion ?",MLV_rgba(191,63,63,255));
     MLV_draw_text_box(
 		100,591,100,50,
 		"Déplacer",
@@ -132,8 +131,7 @@ void troisActions(){
 	);
     
     
-      MLV_draw_text(200,
-		700,"Que vous voulez vous faire avec ce pion ?",MLV_rgba(191,63,63,255));
+     
     MLV_draw_text_box(
 		300,591,100,50,
 		"Attaquer",
@@ -143,8 +141,6 @@ void troisActions(){
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
     
-      MLV_draw_text(200,
-		700,"Que vous voulez vous faire avec ce pion ?",MLV_rgba(191,63,63,255));
     MLV_draw_text_box(
 		500,591,100,50,
 		"Attendre",
@@ -159,3 +155,42 @@ void troisActions(){
     MLV_actualise_window();
     
 }
+
+
+void hoverSelection(Unite unite){
+      reinitialiseInterface();
+    printf("%d et %d",unite.posX,unite.posY);
+     MLV_draw_filled_rectangle((unite.posX)*40,(unite.posY)*40, 40, 40, MLV_rgba(127,191,63,100));
+    
+     MLV_draw_text_box(
+		215,591,100,50,
+		"OUI",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+          MLV_draw_text_box(
+		415,591,100,50,
+		"NON",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+    
+    if (unite.couleur=='R'){
+     MLV_draw_text(200,
+		500,"ROUGE :VEUX-TU SELECTIONNER CETTE UNITE ? ",MLV_rgba(191,63,63,255));
+           }
+    if (unite.couleur=='B'){
+     MLV_draw_text(200,
+		500,"BLEU :VEUX-TU SELECTIONNER CETTE UNITE ? ",MLV_rgba(191,63,63,255));
+           }
+    
+    
+    
+    
+    MLV_actualise_window();
+    
+     }
