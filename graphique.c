@@ -194,3 +194,39 @@ void hoverSelection(Unite unite){
     MLV_actualise_window();
     
      }
+
+void deplacer(){
+   reinitialiseInterface();
+    MLV_draw_text(200,
+		500,"Clique sur la case où tu veux déplacer ton unité",MLV_rgba(191,63,63,255));
+    
+    
+    MLV_actualise_window();
+    
+}
+
+void arreterTour(){
+   reinitialiseInterface();
+    MLV_draw_text(200,
+		500,"Voulez vous arreter votre tour ? ",MLV_rgba(191,63,63,255));
+    
+     MLV_draw_text_box(
+		215,591,100,50,
+		"OUI",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+          MLV_draw_text_box(
+		415,591,100,50,
+		"NON",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+    
+    MLV_actualise_window();
+    
+}

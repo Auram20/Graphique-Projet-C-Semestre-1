@@ -181,7 +181,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
   UListe uliste = *getUListe(couleur, monde);
   int nUnite = nombreUnite(uliste);
   Unite **uniteSelect = creerSelection(uliste);
-   
+  int mouseX=416, mouseY=592;   
   if(nUnite) {
       affichePlateau(*monde);
     dessinerplateau(*monde);
@@ -195,12 +195,13 @@ void gererTourJoueur(char couleur, Monde *monde) {
         affichePlateau(*monde);
         dessinerplateau(*monde);
         printf("Voulez-vous arreter votre tour ? (o/n)\n");
-        scanf(" %c", &cmd);
-      } else {
+        arreterTour();  
+          MLV_wait_mouse(&mouseX, &mouseY);  
+      } else if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591) ){
         printf("Arret du tour !\n"); 
         cmd = 'o';
       }
-    } while(cmd != 'o');
+    } while((mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591));
     free(uniteSelect);
   }
 }
@@ -231,6 +232,7 @@ int nombreUnite(UListe uliste) {
 }
 
 int parcourirUniteSelect(Unite **tab, int length) {
+
   int i = -1;
   int mouseX=416, mouseY=592; /* Pour permettre l'entrée dans la boucle While*/
    
@@ -281,16 +283,14 @@ void actionUnite(Unite *unite, Monde *monde) {
   int mouseX, mouseY;
   MLV_wait_mouse(&mouseX, &mouseY);    
 
-  if(mouseX>100 && mouseX<200 && mouseY<641 && mouseY>591){
+  if(mouseX>100 && mouseX<200 && mouseY<641 && mouseY>591){ deplacer();
     int posX, posY;
-    printf("Indiquer positions x,y : ");
-    scanf("%d,%d", &posX, &posY);
-    deplacerUnite(unite, monde, posX, posY);
+   MLV_wait_mouse(&posX, &posY);
+    deplacerUnite(unite, monde, posX/40, posY/40);
   } else if(mouseX>300 && mouseX<400 && mouseY<641 && mouseY>591) {
-    int posX, posY;
-    printf("Indiquer positions d'attaque x,y : ");
-    scanf("%d,%d", &posX, &posY);
-    attaquer(unite, monde, posX, posY);
+     int attX,attY;
+   MLV_wait_mouse(&attX, &attY);
+    attaquer(unite, monde, attX/40, attY/40);
   }
 }
 
