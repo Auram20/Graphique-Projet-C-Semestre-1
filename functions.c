@@ -270,19 +270,21 @@ void decaleSelect(Unite **tab, size_t debut, size_t length) {
 
 
 void actionUnite(Unite *unite, Monde *monde) {
-  char c[MAXCHAR];
+
   printf("Que voulez-vous faire ?\n");
   printf("deplacer | attaquer | attendre\n");
   troisActions();
-  scanf(" %s", c);
-  if(strcmp("deplacer", c) == 0) {
+  int mouseX, mouseY;
+  MLV_wait_mouse(&mouseX, &mouseY);    
+
+  if(mouseX>100 && mouseX<200 && mouseY<641 && mouseY>591){
     int posX, posY;
     printf("Indiquer positions x,y : ");
     scanf("%d,%d", &posX, &posY);
     deplacerUnite(unite, monde, posX, posY);
-  } else if(strcmp("attaquer", c) == 0) {
+  } else if(mouseX>300 && mouseX<400 && mouseY<641 && mouseY>591) {
     int posX, posY;
-    printf("Indiquer positions x,y : ");
+    printf("Indiquer positions d'attaque x,y : ");
     scanf("%d,%d", &posX, &posY);
     attaquer(unite, monde, posX, posY);
   }
