@@ -186,6 +186,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
       affichePlateau(*monde);
     dessinerplateau(*monde);
     printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
+    printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
     do {
       selection = parcourirUniteSelect(uniteSelect, nUnite);
       if(selection != -1) {
@@ -196,7 +197,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
         printf("Voulez-vous arreter votre tour ? (o/n)\n");
         scanf(" %c", &cmd);
       } else {
-        printf("Arret du tour !\n");
+        printf("Arret du tour !\n"); 
         cmd = 'o';
       }
     } while(cmd != 'o');
@@ -267,30 +268,12 @@ void decaleSelect(Unite **tab, size_t debut, size_t length) {
   }
 }
 
-/* BACKUP
-Unite *parcourirUnites(UListe uliste) {
-  char cmd = 'n';
-  Unite *selection;
-  selection = uliste.unites;
-  printf("--------LISTE UNITES--------\n");
-  while(cmd != 'o') {
-    if(selection->suiv == NULL) {
-      selection = uliste.unites;
-    } else {
-      selection = selection->suiv;
-    }
-    afficherUnite(*selection);
-    printf("Voulez-vous le selectionner ? (o/n)\n");
-    scanf(" %c", &cmd);
-    printf("----------------------------\n");
-  }
-  return selection;
-}*/
 
 void actionUnite(Unite *unite, Monde *monde) {
   char c[MAXCHAR];
   printf("Que voulez-vous faire ?\n");
   printf("deplacer | attaquer | attendre\n");
+  troisActions();
   scanf(" %s", c);
   if(strcmp("deplacer", c) == 0) {
     int posX, posY;

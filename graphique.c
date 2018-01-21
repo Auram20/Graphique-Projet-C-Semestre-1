@@ -15,14 +15,20 @@ void creerFenetre(){
 void dessinerplateau(Monde monde){
 
     int x;
-    int y;
+    int y;      
+    MLV_Image *imageGB, *imageGR;
+    
+    imageGB = MLV_load_image( "GB.png" ); 
+    imageGR = MLV_load_image( "GR.png" ); 
+    MLV_resize_image_with_proportions( imageGB, 30, 30);
+    MLV_resize_image_with_proportions( imageGR, 30, 30);
+    
     for (x=1;x<=722;x=x+40){
         for (y=0;y<=482;y=y+40){
               MLV_draw_filled_rectangle(x, y, 40, 40, MLV_rgba(206,206,206,255));
                     }
                                 }
-
-      for (x=0;x<=721;x=x+40){
+for (x=0;x<=721;x=x+40){
              MLV_draw_line(x,0,x,480,MLV_COLOR_BLACK);
            }
  for (x=0;x<=481;x=x+40){
@@ -38,24 +44,31 @@ for (x = 0; x < LONG; x++){
 
             if (monde.plateau[x][y] != NULL){
 
-				MLV_Color color;
-
+		
             if (monde.plateau[x][y]->couleur == ROUGE){
-					color = MLV_rgba(191,63,63,255);
+                 
+			if (monde.plateau[x][y]->genre == SERF){
+					MLV_draw_filled_ellipse(y*40 + 20, x*40 + 20, 7, 7, MLV_rgba(191,63,63,255));
+				} 
+                else {
+					 MLV_draw_image( imageGR, y*40+5 , x*40+5  );
+				        }
+                    }
+                
+                 if (monde.plateau[x][y]->couleur == BLEU){
 
-				} else {
-					color = MLV_rgba(63,127,191,255);
+			if (monde.plateau[x][y]->genre == SERF){
+					MLV_draw_filled_ellipse(y*40 + 20, x*40 + 20, 7, 7, MLV_rgba(63,127,191,255));
+				} 
+                     else {
+					 MLV_draw_image( imageGB, y*40 +5, x*40 +5 );
 				}
-
-				if (monde.plateau[x][y]->genre == SERF){
-					MLV_draw_filled_ellipse(y*40 + 15, x*40 + 15, 7, 7, color);
-				} else {
-					MLV_draw_filled_rectangle(y*40 + 12, x*40 + 12, 12, 12, color);
-				}
-        }}
+        }
+            
+            }
 }
 
-
+}
 
 
 
@@ -70,7 +83,7 @@ for (x = 0; x < LONG; x++){
 
 
 void quiCommence(){
-   
+   reinitialiseInterface();
     MLV_draw_text(300,
 		700,"Qui commence ?",MLV_rgba(191,63,63,255));
     MLV_draw_filled_rectangle(50, 591, 200, 100, MLV_rgba(191,63,63,255));
@@ -98,4 +111,36 @@ void Pos(char couleur){
 		700,"BLEU : À TON TOUR DE POSITIONNER",MLV_rgba(63,127,191,255));
     }
     MLV_actualise_window();
+}
+
+
+void troisActions(){
+   reinitialiseInterface();
+    MLV_draw_text(200,
+		700,"Que vous voulez vous faire avec ce pion ?",MLV_rgba(191,63,63,255));
+    MLV_draw_adapted_text_box(
+		150,591,
+		"Attaquer",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_TEXT_CENTER
+	);
+        MLV_draw_adapted_text_box(
+		350,591,
+		"Déplacer",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_TEXT_CENTER
+	);
+        MLV_draw_adapted_text_box(
+		550,591,
+		"Attendre",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_TEXT_CENTER
+	);
+    
+    
+    MLV_actualise_window();
+    
 }
