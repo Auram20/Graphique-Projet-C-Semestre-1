@@ -11,3 +11,4 @@ void troisActions();
 void hoverSelection(Unite unite);
 void deplacer();
 void arreterTour();
+void arreterPartieGr();

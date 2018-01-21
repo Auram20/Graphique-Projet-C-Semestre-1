@@ -230,3 +230,29 @@ void arreterTour(){
     MLV_actualise_window();
     
 }
+
+void arreterPartieGr(){
+   reinitialiseInterface();
+    MLV_draw_text(200,
+		500,"Voulez vous arreter la partie ? ",MLV_rgba(191,63,63,255));
+    
+     MLV_draw_text_box(
+		215,591,100,50,
+		"OUI",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+          MLV_draw_text_box(
+		415,591,100,50,
+		"NON",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+    
+    MLV_actualise_window();
+    
+}

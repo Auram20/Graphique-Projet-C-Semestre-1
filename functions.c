@@ -177,12 +177,11 @@ Unite *getUnitePrec(Unite *unite, UListe *uliste) {
 
 void gererTourJoueur(char couleur, Monde *monde) {
   int selection;
-  char cmd;
   UListe uliste = *getUListe(couleur, monde);
   int nUnite = nombreUnite(uliste);
   Unite **uniteSelect = creerSelection(uliste);
   int mouseX=416, mouseY=592;   
-  if(nUnite) {
+  if(nUnite!=0) {
       affichePlateau(*monde);
     dessinerplateau(*monde);
     printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
@@ -197,9 +196,8 @@ void gererTourJoueur(char couleur, Monde *monde) {
         printf("Voulez-vous arreter votre tour ? (o/n)\n");
         arreterTour();  
           MLV_wait_mouse(&mouseX, &mouseY);  
-      } else if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591) ){
+      } else if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591 ) ){
         printf("Arret du tour !\n"); 
-        cmd = 'o';
       }
     } while((mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591));
     free(uniteSelect);
@@ -240,7 +238,8 @@ int parcourirUniteSelect(Unite **tab, int length) {
   if(length <= 0) {
     printf("Plus aucune unite selectionnable\n");
     printf("----------------------------\n");
-  } else {
+  } 
+    else {
     while(mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591) {
       if(i + 1 < length) {
         ++i;
@@ -277,8 +276,6 @@ void decaleSelect(Unite **tab, size_t debut, size_t length) {
 
 void actionUnite(Unite *unite, Monde *monde) {
 
-  printf("Que voulez-vous faire ?\n");
-  printf("deplacer | attaquer | attendre\n");
   troisActions();
   int mouseX, mouseY;
   MLV_wait_mouse(&mouseX, &mouseY);    
@@ -431,15 +428,20 @@ void placementInitial(Monde *monde){
 }
 
 int arreterPartie(){
-    char reponse;
+    arreterPartieGr();
     printf("Voulez vous quitter la partie ? (o/n)\n");
-    scanf(" %c",&reponse);
-    if('o'==reponse){
+    int mouseX, mouseY;
+    MLV_wait_mouse(&mouseX, &mouseY);  
+    if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591)){
 
         printf("Merci d'avoir joué \n");
         return 1;
 
     }
+    
+    else if((mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591)){
+    return 0;
+        }
     return 0;
 }
 
