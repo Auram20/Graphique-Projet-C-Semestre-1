@@ -196,12 +196,15 @@ void gererTourJoueur(char couleur, Monde *monde) {
         printf("Voulez-vous arreter votre tour ? (o/n)\n");
         arreterTour();  
           MLV_wait_mouse(&mouseX, &mouseY);  
-      } else if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591 ) ){
+      } else if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591)){
         printf("Arret du tour !\n"); 
       }
-    } while((mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591));
-    free(uniteSelect);
-  }
+    }
+      while(mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591 && selection > -1);
+      {
+          free(uniteSelect);
+      }
+}
 }
 
 Unite **creerSelection(UListe uliste) {
