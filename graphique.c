@@ -88,7 +88,7 @@ for (x = 0; x < LONG; x++){
 
 void quiCommence(){
    reinitialiseInterface();
-   MLV_draw_text(290,600,"QUI COMMENCE ? ",MLV_rgba(191,63,63,255));
+   MLV_draw_text(260,500,"QUI POSITIONNE EN PREMIER ? ",MLV_rgba(191,63,63,255));
     MLV_draw_filled_rectangle(50, 591, 200, 100, MLV_rgba(191,63,63,255));
      MLV_draw_filled_rectangle(450, 591, 200, 100, MLV_rgba(63,127,191,255));
     MLV_actualise_window();
@@ -160,6 +160,7 @@ void hoverSelection(Unite unite,Monde monde){
       reinitialiseInterface();
     printf("%d et %d",unite.posX,unite.posY);
      MLV_draw_rectangle((unite.posX)*40,(unite.posY)*40, 40, 40, MLV_rgba(219,0,0,250));
+    MLV_draw_rectangle((unite.posX)*40+1,(unite.posY)*40+1, 38, 38, MLV_rgba(219,0,0,250));
     
      MLV_draw_text_box(
 		215,591,100,50,
