@@ -8,7 +8,7 @@ void creerFenetre();
 void quiCommence();
 void Pos(char couleur); 
 void troisActions();
-void hoverSelection(Unite unite);
+void hoverSelection(Unite unite,Monde monde);
 void action(char acte);
 void arreterTour();
 void arreterPartieGr();

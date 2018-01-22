@@ -187,7 +187,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
     printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
     printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
     do {
-      selection = parcourirUniteSelect(uniteSelect, nUnite);
+      selection = parcourirUniteSelect(uniteSelect, nUnite, *monde);
       if(selection != -1) {
         actionUnite(uniteSelect[selection], monde);
         nUnite = enleverSelect(uniteSelect, selection, nUnite);
@@ -232,10 +232,11 @@ int nombreUnite(UListe uliste) {
   return n;
 }
 
-int parcourirUniteSelect(Unite **tab, int length) {
-
+int parcourirUniteSelect(Unite **tab, int length, Monde monde) {
+    
   int i = -1;
-  int mouseX=416, mouseY=592; /* Pour permettre l'entrée dans la boucle While*/
+  char c='N';    
+  int mouseX, mouseY; /* Pour permettre l'entrée dans la boucle While*/
    
   printf("--------LISTE UNITES--------\n");
   if(length <= 0) {
@@ -243,23 +244,47 @@ int parcourirUniteSelect(Unite **tab, int length) {
     printf("----------------------------\n");
   } 
     else {
-    while(mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591) {
-      if(i + 1 < length) {
-        ++i;
-          
-      hoverSelection(*tab[i]); 
-      } else {
-        i = 0;
-      }
-        
-      afficherUnite(*tab[i]);    
-      printf("Voulez-vous le selectionner ? (o/n)\n");
-      MLV_wait_mouse(&mouseX, &mouseY);  
-      printf("----------------------------\n");
+
+          if(i + 1 < length) {
+            ++i;  
+          } else {
+            i = 0;
+          }
+          hoverSelection(*tab[i],monde);  
+          afficherUnite(*tab[i]);    
+          printf("Voulez-vous le selectionner ? (o/n)\n");
+           MLV_wait_mouse(&mouseX, &mouseY);  
+
+          printf("----------------------------\n");
+    while(c=='N') 
+    {
+ 
+        if(mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591) {
+
+          if(i + 1 < length) {
+            ++i;  
+          } else {
+            i = 0;
+          }
+          hoverSelection(*tab[i],monde);  
+          afficherUnite(*tab[i]);    
+          printf("Voulez-vous le selectionner ? (o/n)\n");
+           MLV_wait_mouse(&mouseX, &mouseY);  
+
+          printf("----------------------------\n");
+        } else if(mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591) {
+            c='O';
+        } else {
+            MLV_wait_mouse(&mouseX, &mouseY); 
+        }
+            
     }
+              
   }
 
+   
   return i;
+
 }
 
 int enleverSelect(Unite **tab, size_t indice, size_t length) {

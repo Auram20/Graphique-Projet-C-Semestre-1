@@ -23,7 +23,7 @@ int deplacerOuAttaquer(Unite *unite, Monde *monde, int destX, int destY);
 void gererTourJoueur(char couleur, Monde *monde);
 Unite **creerSelection(UListe uliste);
 int nombreUnite(UListe uliste);
-int parcourirUniteSelect(Unite **tab, int length);
+int parcourirUniteSelect(Unite **tab, int length, Monde monde);
 int enleverSelect(Unite **tab, size_t indice, size_t length);
 void decaleSelect(Unite **tab, size_t debut, size_t length);
 /*Unite *parcourirUnites(UListe uliste); BACKUP*/

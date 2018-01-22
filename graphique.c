@@ -7,10 +7,14 @@
 #include "graphique.h"
 
 void creerFenetre(){
-
+    
 	MLV_create_window( "Jeu de Stratégie", "Jeu", 721, 721 );
-    MLV_draw_filled_rectangle(0, 0, 721, 721, MLV_rgba(206,206,206,255));
-            }
+    MLV_Image *plateau;
+    plateau=MLV_load_image("plateau.jpg");
+    MLV_draw_image(plateau,0,0);
+    MLV_actualise_window();
+
+}
 
 void dessinerplateau(Monde monde){
 
@@ -27,18 +31,15 @@ void dessinerplateau(Monde monde){
     MLV_resize_image_with_proportions( imageSB, 30, 30);
     MLV_resize_image_with_proportions( imageSR, 30, 30);
     
-    for (x=1;x<=722;x=x+40){
-        for (y=0;y<=482;y=y+40){
-              MLV_draw_filled_rectangle(x, y, 40, 40, MLV_rgba(206,206,206,255));
-                    }
-                                }
 for (x=0;x<=721;x=x+40){
-             MLV_draw_line(x,0,x,480,MLV_COLOR_BLACK);
+             MLV_draw_line(x,0,x,480,MLV_rgba(76,25,25,100));
            }
  for (x=0;x<=481;x=x+40){
-             MLV_draw_line(0,x,720,x,MLV_COLOR_BLACK);
+             MLV_draw_line(0,x,720,x,MLV_rgba(76,25,25,100));
            }
-
+ MLV_Image *plateau;
+    plateau=MLV_load_image("interfaceplateau.jpg");
+    MLV_draw_image(plateau,0,0);
 
 
 
@@ -67,8 +68,7 @@ for (x = 0; x < LONG; x++){
                      else {
 					 MLV_draw_image( imageGB, y*40 +5, x*40 +5 );
 				}
-        }
-            
+        }            
             }
 }
 
@@ -96,8 +96,10 @@ void quiCommence(){
 }
 
 void reinitialiseInterface(){
-     MLV_draw_filled_rectangle(0, 482, 720, 340, MLV_rgba(206,206,206,255));
- MLV_actualise_window();
+MLV_Image *interface;
+    interface=MLV_load_image("interface.jpg");
+    MLV_draw_image(interface,0,482);
+    MLV_actualise_window();
 }
 void Pos(char couleur){
     if (couleur=='R'){
@@ -153,10 +155,11 @@ void troisActions(){
 }
 
 
-void hoverSelection(Unite unite){
+void hoverSelection(Unite unite,Monde monde){
+        dessinerplateau(monde);
       reinitialiseInterface();
     printf("%d et %d",unite.posX,unite.posY);
-     MLV_draw_filled_rectangle((unite.posX)*40,(unite.posY)*40, 40, 40, MLV_rgba(127,191,63,100));
+     MLV_draw_rectangle((unite.posX)*40,(unite.posY)*40, 40, 40, MLV_rgba(219,0,0,250));
     
      MLV_draw_text_box(
 		215,591,100,50,
