@@ -190,6 +190,7 @@ void gererTourJoueur(char couleur, Monde *monde) {
       selection = parcourirUniteSelect(uniteSelect, nUnite, *monde);
       if(selection != -1) {
         actionUnite(uniteSelect[selection], monde);
+          printf("blblblb");
         nUnite = enleverSelect(uniteSelect, selection, nUnite);
         affichePlateau(*monde);
         dessinerplateau(*monde);
@@ -301,25 +302,36 @@ void decaleSelect(Unite **tab, size_t debut, size_t length) {
   }
 }
 
-
 void actionUnite(Unite *unite, Monde *monde) {
-
+  char c='P';       
   troisActions();
   int mouseX, mouseY;
-  MLV_wait_mouse(&mouseX, &mouseY);    
-
-  if(mouseX>100 && mouseX<200 && mouseY<641 && mouseY>591){ char acte='D';
-      action(acte);
+  
+    while (c=='P'){
+        MLV_wait_mouse(&mouseX, &mouseY);    
+      if(mouseX>100 && mouseX<200 && mouseY<641 && mouseY>591){ 
+      c='D';
+      action(c);
     int posX, posY;
     MLV_wait_mouse(&posX, &posY);
     deplacerUnite(unite, monde, posX/40, posY/40);
-  } else if(mouseX>300 && mouseX<400 && mouseY<641 && mouseY>591) {
-      char acte='A';
-      action(acte);
+  } 
+        else if(mouseX>300 && mouseX<400 && mouseY<641 && mouseY>591) {
+     
+      c='A';
+      action(c);
      int attX,attY;
    MLV_wait_mouse(&attX, &attY);
     attaquer(unite, monde, attX/40, attY/40);
   }
+        
+        
+       else if(mouseX>500 && mouseX<600 && mouseY<641 && mouseY>591)  {
+           c='T';
+   
+           
+        }   
+    }
 }
 
 void afficherUnite(Unite unite) {
@@ -472,20 +484,28 @@ void placementInitial(Monde *monde){
 
 int arreterPartie(){
     arreterPartieGr();
+    char c='N';
     printf("Voulez vous quitter la partie ? (o/n)\n");
     int mouseX, mouseY;
     MLV_wait_mouse(&mouseX, &mouseY);  
-    if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591)){
-
-        printf("Merci d'avoir joué \n");
-        return 1;
-
-    }
-    
-    else if((mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591)){
+ 
+     while(c=='N') 
+    {
+         
+    if((mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591)){
     return 0;
         }
-    return 0;
+    else if(mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591) {
+            c='O';
+        return 1;
+
+        } 
+    else {
+           
+    MLV_wait_mouse(&mouseX, &mouseY); 
+        }
+}
+return 0;
 }
 
 
