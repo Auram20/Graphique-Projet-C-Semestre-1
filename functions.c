@@ -531,12 +531,13 @@ int arreterPartie(Monde monde){
 
 
 void gererPartie(void){
-
+    printf("ça rentre dans gererpartie \n");
     Monde mondejeu;
     int arret = 0;
     char gagnant;
     initialiserMonde(&mondejeu);
     creerFenetre();
+  
     quiCommence(); 
     affichePlateau(mondejeu);
     dessinerplateau(mondejeu);

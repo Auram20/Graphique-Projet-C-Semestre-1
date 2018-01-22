@@ -6,12 +6,26 @@
 #include "functions.h"
 #include "graphique.h"
 
+
+
+void musique(){
+     MLV_init_audio();
+
+        MLV_Music *music;
+    music= MLV_load_music("dofus.mp3");
+        
+ 
+    MLV_play_music(music,1.0,-1); 
+}
+
+
 void creerFenetre(){
     
-	MLV_create_window( "Jeu de Stratégie", "Jeu", 721, 721 );
+
     MLV_Image *plateau;
     plateau=MLV_load_image("plateau.jpg");
     MLV_draw_image(plateau,0,0);
+    
     MLV_actualise_window();
 
 }
@@ -84,7 +98,6 @@ for (x = 0; x < LONG; x++){
 	   MLV_free_window();
 */
 }
-
 
 void quiCommence(){
    reinitialiseInterface();
@@ -263,6 +276,60 @@ void arreterPartieGr(){
 }
 
 
+void Debut(){
+    MLV_create_window( "Jeu de Stratégie", "Jeu", 721, 721 );
+      MLV_Image *accueil;
+    accueil=MLV_load_image("accueil.jpg");
+    MLV_draw_image(accueil,0,0);
+            MLV_Font* font = MLV_load_font( "Cardinal.ttf" , 80 );
+        MLV_draw_text_with_font(
+                100, 20,
+                "LA GUERRE", 
+                font, MLV_rgba(84,71,65,255)
+        ); 
+       MLV_draw_text_with_font(
+                270, 100,
+                "DES", 
+                font, MLV_rgba(84,71,65,255)
+        ); 
+       MLV_draw_text_with_font(
+                120, 180,
+                "HAMEAUX", 
+                font, MLV_rgba(84,71,65,255)
+        ); 
+    
+    MLV_draw_text_box(
+		250,291,200,50,
+		"LANCER UNE PARTIE",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+    
+     MLV_draw_text_box(
+		250,391,200,50,
+		"COMMENT JOUER ?",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+           MLV_draw_text_box(
+250,491,200,50,
+		"QUITTER ?",
+		5,
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
+			MLV_TEXT_LEFT,
+		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
+	);
+    
+    
+    MLV_actualise_window();
+    
+}
+
+
 void Fin(char ecranfin){
       MLV_draw_filled_rectangle(0, 0, 721, 721, MLV_rgba(84,71,65,255));
     
@@ -281,6 +348,8 @@ void Fin(char ecranfin){
         MLV_draw_text(240,
 		360.5,"FIN DE LA PARTIE PAS DE GAGNANT",MLV_COLOR_WHITE);
       }
+    
+       
     MLV_actualise_window();
     
 }
