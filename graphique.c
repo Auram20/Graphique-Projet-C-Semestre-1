@@ -123,7 +123,7 @@ void troisActions(){
 		100,591,100,50,
 		"Déplacer",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -134,7 +134,7 @@ void troisActions(){
 		300,591,100,50,
 		"Attaquer",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -143,7 +143,7 @@ void troisActions(){
 		500,591,100,50,
 		"Attendre",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -166,7 +166,7 @@ void hoverSelection(Unite unite,Monde monde){
 		215,591,100,50,
 		"OUI",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -174,7 +174,7 @@ void hoverSelection(Unite unite,Monde monde){
 		415,591,100,50,
 		"NON",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -219,7 +219,7 @@ void arreterTour(){
 		215,591,100,50,
 		"OUI",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -227,7 +227,7 @@ void arreterTour(){
 		415,591,100,50,
 		"NON",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -245,7 +245,7 @@ void arreterPartieGr(){
 		215,591,100,50,
 		"OUI",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -253,7 +253,7 @@ void arreterPartieGr(){
 		415,591,100,50,
 		"NON",
 		5,
-		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(63,127,191,255),
+		MLV_COLOR_RED, MLV_COLOR_WHITE, MLV_rgba(84,71,65,255),
 			MLV_TEXT_LEFT,
 		MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER
 	);
@@ -264,23 +264,24 @@ void arreterPartieGr(){
 
 
 void Fin(char ecranfin){
-      MLV_draw_filled_rectangle(0, 0, 721, 721, MLV_rgba(206,206,206,255));
+      MLV_draw_filled_rectangle(0, 0, 721, 721, MLV_rgba(84,71,65,255));
     
      if(ecranfin=='B'){
              MLV_draw_text(240,
-		360.5,"BLEU A GAGNÉ ",MLV_rgba(191,63,63,255));
+		360.5,"BLEU A GAGNÉ ",MLV_COLOR_WHITE);
          
          
      }
     if(ecranfin=='R'){
           MLV_draw_text(240,
-		360.5,"ROUGE A GAGNÉ ",MLV_rgba(191,63,63,255));
+		360.5,"ROUGE A GAGNÉ ",MLV_COLOR_WHITE);
          
      }
       if(ecranfin=='N'){
         MLV_draw_text(240,
-		360.5,"FIN DE LA PARTIE PAS DE GAGNANT",MLV_rgba(191,63,63,255));
+		360.5,"FIN DE LA PARTIE PAS DE GAGNANT",MLV_COLOR_WHITE);
       }
     MLV_actualise_window();
     
 }
+

@@ -584,3 +584,5 @@ void gererPartie(void){
     
     
 }
+
+
