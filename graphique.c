@@ -171,7 +171,6 @@ void troisActions(){
 void hoverSelection(Unite unite,Monde monde){
         dessinerplateau(monde);
       reinitialiseInterface();
-    printf("%d et %d",unite.posX,unite.posY);
      MLV_draw_rectangle((unite.posX)*40,(unite.posY)*40, 40, 40, MLV_rgba(219,0,0,250));
     MLV_draw_rectangle((unite.posX)*40+1,(unite.posY)*40+1, 38, 38, MLV_rgba(219,0,0,250));
     
