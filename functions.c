@@ -72,35 +72,8 @@ int placerAuMonde(Unite *unite, Monde *monde, size_t posX, size_t posY) {
   }
 }
 
-void affichePlateau(Monde monde) {
-  int i, j;
-  afficheNumH(LARG);
-  ligne();
-  for(i = 0; i < LONG; ++i) {
-    printf("|");
-    for(j = 0; j < LARG; ++j) {
-      if(monde.plateau[i][j] == NULL) {
-        printf("    ");
-      } else {
-        char *symbol = getSymbol(monde.plateau[i][j]->genre);
-        printf(" %s%c", symbol, monde.plateau[i][j]->couleur);
-        free(symbol);
-      }
-      printf("|");
-    }
-    printf("  %d", i);
-    printf("\n");
-    ligne();
-  }
-}
 
-void afficheNumH(int n) {
-  int i;
-  for(i = 0; i < n; ++i) {
-    printf("  %2d ", i);
-  }
-  printf("\n");
-}
+
 
 /*À libérer avec free*/
 char *getSymbol(char genre) {
@@ -123,9 +96,9 @@ char *getSymbol(char genre) {
 void ligne() {
   int i;
   for(i = 0; i < LARG * 5 + 1; ++i) {
-    printf("-");
+  
   }
-  printf("\n");
+
 
 }
 
@@ -184,37 +157,30 @@ void gererTourJoueur(char couleur, Monde *monde) {
   int mouseX=414;
   int mouseY=590;
   if(nUnite!=0) {
-      affichePlateau(*monde);
     dessinerplateau(*monde);
-    printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
-    printf("Tour : %d | Joueur : %c\n", monde->tour, couleur);
     do {
       selection = parcourirUniteSelect(uniteSelect, nUnite, *monde);
       if(selection != -1) {
         actionUnite(uniteSelect[selection], monde);
         nUnite = enleverSelect(uniteSelect, selection, nUnite);
-        affichePlateau(*monde);
         dessinerplateau(*monde);
-        printf("Voulez-vous arreter votre tour ? (o/n)\n");
         
        
         arreterTour();  
         while (!(mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591) && !(mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591)){
         MLV_wait_mouse(&mouseX, &mouseY);  
-            printf("test \n");
+            
         if((mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591)){
             c='O';
-        printf("Arret du tour !\n"); 
       }
         else if((mouseX<515 && mouseX>415 && mouseY<641 && mouseY>591))
         {
             c='N';
-            printf("PAS arret du tour !\n");
         }
     }
     }}
       while( (c=='N') && (selection > -1) && (nombreUnite(*(monde->rouge)) > 0 && nombreUnite(*(monde->bleu)) > 0));
-            printf("ça sort de la boucle ! \n");
+         
           free(uniteSelect);
       
 }
@@ -251,10 +217,9 @@ int parcourirUniteSelect(Unite **tab, int length, Monde monde) {
   char c='N';    
   int mouseX, mouseY; /* Pour permettre l'entrée dans la boucle While*/
    
-  printf("--------LISTE UNITES--------\n");
+  
   if(length <= 0) {
-    printf("Plus aucune unite selectionnable\n");
-    printf("----------------------------\n");
+   
   } 
     else {
 
@@ -264,11 +229,9 @@ int parcourirUniteSelect(Unite **tab, int length, Monde monde) {
             i = 0;
           }
           hoverSelection(*tab[i],monde);  
-          afficherUnite(*tab[i]);    
-          printf("Voulez-vous le selectionner ? (o/n)\n");
+         
            MLV_wait_mouse(&mouseX, &mouseY);  
 
-          printf("----------------------------\n");
     while(c=='N') 
     {
  
@@ -280,11 +243,8 @@ int parcourirUniteSelect(Unite **tab, int length, Monde monde) {
             i = 0;
           }
           hoverSelection(*tab[i],monde);  
-          afficherUnite(*tab[i]);    
-          printf("Voulez-vous le selectionner ? (o/n)\n");
            MLV_wait_mouse(&mouseX, &mouseY);  
 
-          printf("----------------------------\n");
         } else if(mouseX<315 && mouseX>215 && mouseY<641 && mouseY>591) {
             c='O';
         } else {
@@ -346,10 +306,7 @@ void actionUnite(Unite *unite, Monde *monde) {
     }
 }
 
-void afficherUnite(Unite unite) {
-  printf("\tGenre : %c\n", unite.genre);
-  printf("\tPositions x,y : %d,%d\n", unite.posX, unite.posY);
-}
+
 
 int attaquer(Unite *unite, Monde *monde, int destX, int destY){
     if(monde->plateau[destY][destX] !=NULL && unite->couleur!= monde->plateau[destY][destX]->couleur ){
@@ -433,10 +390,8 @@ void gererTour(Monde *monde) {
 void placerUnite(Monde *monde, UListe *uliste, char genre){
     int posX, posY;
   	MLV_wait_mouse(&posX, &posY);
-    printf("%d,%d \n",posX/40,posY/40);
     while (!placerAuMonde(creerUnite(genre, uliste), monde, posX/40, posY/40)){
-      printf("Position indisponible \n");
-  	MLV_wait_mouse(&posX, &posY);
+      	MLV_wait_mouse(&posX, &posY);
     }
     
     dessinerplateau(*monde);
@@ -446,16 +401,13 @@ void placerUnite(Monde *monde, UListe *uliste, char genre){
 void placementParJoueur(Monde *monde, char couleur){
     UListe *uliste=getUListe(couleur,monde);
 
-    printf("Où voulez-vous positionner vos deux serfs ? \n ");
     placerUnite(monde,uliste,SERF);
     placerUnite(monde,uliste,SERF);
-    printf(" Placez votre guerrier. \n");
     placerUnite(monde,uliste,GUERRIER);
 }
 
 void placementInitial(Monde *monde){
     char couleur='N';
-    printf("Qui commence ? (R/B) \n");
     int posX, posY;
   	MLV_wait_mouse(&posX, &posY);
       if(posX<250 && posX>50 && posY<691 && posY>591){   
@@ -470,7 +422,6 @@ void placementInitial(Monde *monde){
    
     }
     while(couleur != ROUGE && couleur != BLEU) {
-           printf("Veuillez appuyer sur une couleur!\n");
         MLV_wait_mouse(&posX, &posY);  
     if(posX<250 && posX>50 && posY<691 && posY>591){   
         reinitialiseInterface();
@@ -488,7 +439,6 @@ void placementInitial(Monde *monde){
      Pos(couleur);
      placementParJoueur(monde,couleur);
    
-    printf("À l'autre joueur de placer ses unités :) \n");
     if('B' == couleur){
         Pos('R');
     placementParJoueur(monde,ROUGE);
@@ -503,7 +453,6 @@ int arreterPartie(Monde monde){
     if (nombreUnite(*(monde.rouge)) > 0 && nombreUnite(*(monde.bleu)) > 0){
     arreterPartieGr();
     char c='N';
-    printf("Voulez vous quitter la partie ? (o/n)\n");
     int mouseX, mouseY;
     MLV_wait_mouse(&mouseX, &mouseY);  
     
@@ -531,7 +480,6 @@ int arreterPartie(Monde monde){
 
 
 void gererPartie(void){
-    printf("ça rentre dans gererpartie \n");
     Monde mondejeu;
     int arret = 0;
     char gagnant;
@@ -539,12 +487,8 @@ void gererPartie(void){
     creerFenetre();
   
     quiCommence(); 
-    affichePlateau(mondejeu);
     dessinerplateau(mondejeu);
-    /*3PIONS 1 GUERRIER 2 SERFS */
     placementInitial(&mondejeu);
-    printf("Début de la partie \n ");
-    affichePlateau(mondejeu);
     dessinerplateau(mondejeu);
     
     
@@ -558,28 +502,25 @@ void gererPartie(void){
      if (nombreUnite(*(mondejeu.bleu)) <= 0)
       {   	gagnant='R';
             Fin(gagnant);
-         MLV_wait_seconds(5);
+         MLV_wait_seconds(30);
 
 	   MLV_free_window();
-          printf("Fin de la partie, le joueur ROUGE a gagne !");
       } 
     
       if (nombreUnite(*(mondejeu.rouge)) <= 0) 
     {     gagnant='B';
             Fin(gagnant);
           
-          MLV_wait_seconds(5);
+          MLV_wait_seconds(30);
 
 	   MLV_free_window();
-          printf("Fin de la partie, le joueur BLEU a gagne !");
       }
     
          gagnant='N';
          Fin(gagnant);
-         MLV_wait_seconds(5);
+         MLV_wait_seconds(30);
 
 	   MLV_free_window();
-        printf("Fin de la partie, pas de gagnants.");
         
       
     

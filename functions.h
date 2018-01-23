@@ -8,7 +8,6 @@ void dessinerplateau(Monde monde);
 void initialiserPlateau(Unite *plateau[LONG][LARG]);
 Unite* creerUnite(char genre, UListe *uliste);
 int placerAuMonde(Unite *unite, Monde *monde, size_t posX, size_t posY);
-void affichePlateau(Monde monde);
 char *getSymbol(char genre);
 void afficheNumH(int n);
 void ligne();
@@ -27,7 +26,6 @@ int parcourirUniteSelect(Unite **tab, int length, Monde monde);
 int enleverSelect(Unite **tab, size_t indice, size_t length);
 void decaleSelect(Unite **tab, size_t debut, size_t length);
 /*Unite *parcourirUnites(UListe uliste); BACKUP*/
-void afficherUnite(Unite unite);
 void actionUnite(Unite *unite, Monde *monde);
 void viderMonde(Monde *monde);
 void viderUListe(UListe *uliste);
