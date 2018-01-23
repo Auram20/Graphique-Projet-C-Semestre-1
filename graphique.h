@@ -15,3 +15,4 @@ void arreterTour();
 void arreterPartieGr();
 void Fin(char ecranfin);
 void Debut();
+void Rules();

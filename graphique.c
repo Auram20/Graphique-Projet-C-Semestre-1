@@ -329,6 +329,40 @@ void Debut(){
     
 }
 
+void Rules(){
+
+      MLV_Image *accueil;
+    accueil=MLV_load_image("accueil.jpg");
+    MLV_draw_image(accueil,0,0);
+            MLV_Font* font = MLV_load_font( "Cardinal.ttf" , 80 );
+        MLV_draw_text_with_font(
+                100, 20,
+                "LA GUERRE", 
+                font, MLV_rgba(84,71,65,255)
+        ); 
+       MLV_draw_text_with_font(
+                270, 100,
+                "DES", 
+                font, MLV_rgba(84,71,65,255)
+        ); 
+       MLV_draw_text_with_font(
+                120, 180,
+                "HAMEAUX", 
+                font, MLV_rgba(84,71,65,255)
+        ); 
+    
+            MLV_draw_adapted_text_box(
+                50, 320, "Bonjour et bienvenue sur notre jeu. \n Le but est simple, il faut décimer les unités ennemies. \n \n \n  Chacun des deux joueurs a trois unités. Deux de types Serf, une de type guerrier. \n \n Vous ne pouvez vous déplacer ou attaquer que dans les 8 \n cases adjascentes. \n \n  Les Guerriers sont les plus forts, ne les attaquez pas avec vos Serfs. \n Les Guerriers déciment toutes les unités. Attaquer le meme type d'unité vous fait vaiqueur. \n \n Le joueur ROUGE commence toujours en premier.\n Il vous faut au moins jouer une unité avant de pouvoir passer votre tour. \n  \n \n Que le meilleur gagne.", 2,
+               MLV_rgba(84,71,65,0),  MLV_COLOR_BLACK, MLV_rgba(84,71,65,120),
+                MLV_TEXT_CENTER
+        );
+    
+    
+    MLV_actualise_window();
+    
+    
+    
+}
 
 void Fin(char ecranfin){
       MLV_draw_filled_rectangle(0, 0, 721, 721, MLV_rgba(84,71,65,255));
@@ -353,4 +387,5 @@ void Fin(char ecranfin){
     MLV_actualise_window();
     
 }
+
 
