@@ -8,8 +8,8 @@
 
 int main(void) {
   Monde monmonde;
-    int mouseX, mouseY;
-    char c='T';
+  int mouseX, mouseY;
+  char c='T';
   if(!initialiserMonde(&monmonde)) {
     printf("Erreur Mémoire\n");
     return EXIT_FAILURE;
@@ -22,6 +22,7 @@ int main(void) {
             MLV_wait_mouse(&mouseX, &mouseY); 
     if((mouseX<450 && mouseX>250 && mouseY<341 && mouseY>291)){ 
         gererPartie();
+        
         c='P';
         }
     else if(((mouseX<450 && mouseX>250 && mouseY<441 && mouseY>391))){

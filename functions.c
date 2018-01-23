@@ -482,10 +482,11 @@ int arreterPartie(Monde monde){
 void gererPartie(void){
     Monde mondejeu;
     int arret = 0;
+    
     char gagnant;
     initialiserMonde(&mondejeu);
     creerFenetre();
-  
+    
     quiCommence(); 
     dessinerplateau(mondejeu);
     placementInitial(&mondejeu);
