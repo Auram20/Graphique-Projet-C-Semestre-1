@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+/*On apelle le Menu dans le main et on gere si l'on veut lancer une partie ou pas en fonction du clic de l'utilisateur*/
 int main(void) {
   Monde monmonde;
   int mouseX, mouseY;

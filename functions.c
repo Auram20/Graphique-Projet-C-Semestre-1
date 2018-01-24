@@ -6,6 +6,8 @@
 #include "graphique.h"
 
 
+/* N'ont été ajouté à ce fichier que les commentaires relatifs aux ajouts graphiques vu qu'il reprend le même schéma que le rendu 1*/
+
 int initialiserMonde(Monde *monde){
     monde->tour = 0;
     initialiserPlateau(monde->plateau);
@@ -24,7 +26,6 @@ int initialiserMonde(Monde *monde){
     return 1;
 }
 
-/*Je suis obligé de mettre les tailles du tableau pour une raison que j'ignore*/
 void initialiserPlateau(Unite *plateau[LONG][LARG]) {
   size_t i, j;
   for(i = 0; i < LONG; ++i) {
@@ -52,6 +53,7 @@ Unite *creerUnite(char genre, UListe *uliste) {
   return temp;
 
 }
+
 Unite *dernier(UListe uliste) {
   Unite *unite;
   unite = uliste.unites;
@@ -74,8 +76,6 @@ int placerAuMonde(Unite *unite, Monde *monde, size_t posX, size_t posY) {
 
 
 
-
-/*À libérer avec free*/
 char *getSymbol(char genre) {
   char *string;
   string = malloc(3 * sizeof(*string));
@@ -93,14 +93,6 @@ char *getSymbol(char genre) {
   return string;
 }
 
-void ligne() {
-  int i;
-  for(i = 0; i < LARG * 5 + 1; ++i) {
-  
-  }
-
-
-}
 
 void deplacerUnite(Unite *unite, Monde *monde, int destX, int destY){
     if(monde->plateau[destY][destX] == NULL && destX <= LONG && destY <= LARG && abs(destX-(unite->posX))<=1 && abs(destY-(unite->posY))<=1 ) /* On verifie que la destination existe et est vide et que c'est un déplacement adjacent */
@@ -148,6 +140,9 @@ Unite *getUnitePrec(Unite *unite, UListe *uliste) {
   return search;
 }
 
+
+
+/* On gere les evenements au clic du joueur, il est aussi à exclure l'espace où le joueur ne peux pas cliquer*/ 
 void gererTourJoueur(char couleur, Monde *monde) {
   int selection;
   char c='N';
@@ -215,7 +210,7 @@ int parcourirUniteSelect(Unite **tab, int length, Monde monde) {
     
   int i = -1;
   char c='N';    
-  int mouseX, mouseY; /* Pour permettre l'entrée dans la boucle While*/
+  int mouseX, mouseY; /* On gere ici aussi les evenements au click du joueur, il est aussi à exclure l'espace où le joueur ne peux pas cliquer*/ 
    
   
   if(length <= 0) {
@@ -274,6 +269,7 @@ void decaleSelect(Unite **tab, size_t debut, size_t length) {
   }
 }
 
+/* On gere ici aussi les evenements au clic du joueur, il est aussi à exclure l'espace où le joueur ne peux pas cliquer*/ 
 void actionUnite(Unite *unite, Monde *monde) {
   char c='P';       
   troisActions();
@@ -317,7 +313,7 @@ int attaquer(Unite *unite, Monde *monde, int destX, int destY){
                     return 1;
                         }
                     enleverUnite(unite,monde);
-        dessinerplateau(*monde);
+                    dessinerplateau(*monde);
                     return 0;
     }
 dessinerplateau(*monde);
@@ -387,6 +383,7 @@ void gererTour(Monde *monde) {
 
 }
 
+/* On place au click du joueur, il est aussi à exclure l'espace où le joueur ne peux pas cliquer*/ 
 void placerUnite(Monde *monde, UListe *uliste, char genre){
     int posX, posY;
   	MLV_wait_mouse(&posX, &posY);
@@ -406,6 +403,7 @@ void placementParJoueur(Monde *monde, char couleur){
     placerUnite(monde,uliste,GUERRIER);
 }
 
+/* On gere les evenements au clic du joueur, il est aussi à exclure l'espace où le joueur ne peux pas cliquer*/ 
 void placementInitial(Monde *monde){
     char couleur='N';
     int posX, posY;
@@ -449,6 +447,7 @@ void placementInitial(Monde *monde){
   }
 }
 
+/* On gere les evenements au clic du joueur, il est aussi à exclure l'espace où le joueur ne peux pas cliquer*/ 
 int arreterPartie(Monde monde){
     if (nombreUnite(*(monde.rouge)) > 0 && nombreUnite(*(monde.bleu)) > 0){
     arreterPartieGr();
@@ -478,7 +477,7 @@ int arreterPartie(Monde monde){
     }
 
 
-
+/* On crée dans cette fonction la fenêtre et on la dessine, le plateau et/ou l'interface sera redessinée par la suite dans les fonctions qui le necessitent plus haut. Dans gérer tour on s'occupe aussi de l'affichage de l'écran de fin en fonction du gagnant */ 
 void gererPartie(void){
     Monde mondejeu;
     int arret = 0;
@@ -497,7 +496,6 @@ void gererPartie(void){
     gererTour(&mondejeu);
     arret = arreterPartie(mondejeu);
     }
-        /*viderMonde(&mondejeu);*/
 
 
      if (nombreUnite(*(mondejeu.bleu)) <= 0)

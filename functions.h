@@ -10,7 +10,6 @@ Unite* creerUnite(char genre, UListe *uliste);
 int placerAuMonde(Unite *unite, Monde *monde, size_t posX, size_t posY);
 char *getSymbol(char genre);
 void afficheNumH(int n);
-void ligne();
 Unite *dernier(UListe uliste);
 void enleverUnite(Unite *unite, Monde* monde);
 Unite *getUnitePrec(Unite *unite, UListe *uliste);
